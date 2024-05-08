@@ -1,0 +1,20 @@
+.message {
+  max-width: 240px;
+  background-color: #ddd;
+  padding: 8px;
+  width: fit-content;
+}
+
+.message-answer {
+  background-color: lightblue;
+  border-radius: 8px 8px 8px 0;
+}
+
+.message-answer_pending {
+  color: green;
+}
+
+.message-question {
+  background-color: lightgreen;
+  border-radius: 8px 8px 0px 8px;
+}
