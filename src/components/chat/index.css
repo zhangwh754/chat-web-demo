@@ -11,6 +11,9 @@
   overflow: auto;
   transform: rotate(180deg);
   direction: rtl;
+  background-image: url("../../static/FullBody22.gif");
+  background-size: 100% 100%;
+  background-attachment: scroll;
 }
 
 .message-wrapper {

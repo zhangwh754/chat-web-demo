@@ -28,12 +28,9 @@ function App() {
         clearTimeout(timer);
       }
 
-      const newMsg = messageList[0].msg + str;
-
-      const newCurrentMessage = {
-        type: "answer",
-        msg: newMsg,
-      };
+      const newCurrentMessage = Object.assign({}, messageList[0], {
+        msg: messageList[0].msg + str,
+      });
 
       setCurrentMessage({
         type: "answer",
@@ -44,7 +41,7 @@ function App() {
         newCurrentMessage,
         ...messageList.slice(1, messageList.length),
       ]);
-    }, 100);
+    }, 35);
 
     return () => {
       clearTimeout(timer);
@@ -68,13 +65,13 @@ function App() {
     ]);
 
     reqRef.current = abortWrapper(
-      new Promise((resolve) => setTimeout(resolve, 4000))
+      new Promise((resolve) => setTimeout(resolve, 800))
     );
 
     reqRef.current
       .then(() => {
         setMessageList((prevMessageList) => [
-          { msg: "", type: "answer" },
+          { msg: "", type: "answer", pending: false },
           ...prevMessageList.slice(1, prevMessageList.length),
         ]);
 
@@ -103,7 +100,10 @@ function App() {
           className="send-input"
           onInput={(e) => setInputValue(e.target.value)}
         />
-        <button onClick={() => onSend()} className="send-button">
+        <button
+          onClick={() => onSend()}
+          className={`send-button ${currentMessage && "disabled"}`}
+        >
           发送
         </button>
       </div>
